@@ -1,0 +1,26 @@
+services:
+  fixposition:
+    image: husarion/fixposition:humble
+    network_mode: host
+    ipc: host
+    volumes:
+      - ./config/tcp.yaml:/ros2_ws/install/fixposition_driver_ros2/share/fixposition_driver_ros2/launch/tcp.yaml
+    command: ros2 launch fixposition_driver_ros2 tcp.launch 
+  
+  foxglove:
+    image: husarion/foxglove:humble-nightly
+    volumes:
+      - ./config/foxglove.json:/src/FoxgloveDefaultLayout.json
+    environment:
+      - FOXGLOVE_PORT=8080
+      - ROSBRIDGE_PORT=9090
+    ports:
+      - 8080:8080
+
+  rosbridge:
+    image: husarion/rosbridge:humble-nightly
+    network_mode: host
+    ipc: host
+    ports:
+      - 9090:9090
+    command: ros2 launch rosbridge_server rosbridge_websocket_launch.xml  
