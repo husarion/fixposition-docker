@@ -2,8 +2,8 @@
   "configById": {
     "map!1gwi36m": {
       "center": {
-        "lat": 50.088278017624496,
-        "lon": 19.938991931238633
+        "lat": 25.487943032944923,
+        "lon": 376.2546794481663
       },
       "customTileUrl": "",
       "disabledTopics": [],
@@ -14,73 +14,8 @@
         "/fixposition/gnss2": "#e3d84f",
         "/fixposition/navsatfix": "#e34f4f"
       },
-      "zoomLevel": 22,
+      "zoomLevel": 3,
       "maxNativeZoom": 18
-    },
-    "3D!18i6zy7": {
-      "layers": {
-        "845139cb-26bc-40b3-8161-8ab60af4baf5": {
-          "visible": true,
-          "frameLocked": true,
-          "label": "Grid",
-          "instanceId": "845139cb-26bc-40b3-8161-8ab60af4baf5",
-          "layerId": "foxglove.Grid",
-          "size": 10,
-          "divisions": 10,
-          "lineWidth": 1,
-          "color": "#248eff",
-          "position": [
-            0,
-            0,
-            0
-          ],
-          "rotation": [
-            0,
-            0,
-            0
-          ],
-          "order": 1
-        }
-      },
-      "cameraState": {
-        "perspective": true,
-        "distance": 5.83978048677077,
-        "phi": 69.52340422035394,
-        "thetaOffset": 25.540540556713072,
-        "targetOffset": [
-          0.4230875308901105,
-          0.539458111179516,
-          6.30016438251378e-17
-        ],
-        "target": [
-          0,
-          0,
-          0
-        ],
-        "targetOrientation": [
-          0,
-          0,
-          0,
-          1
-        ],
-        "fovy": 45,
-        "near": 0.5,
-        "far": 5000
-      },
-      "followMode": "follow-pose",
-      "scene": {},
-      "transforms": {},
-      "topics": {},
-      "publish": {
-        "type": "point",
-        "poseTopic": "/move_base_simple/goal",
-        "pointTopic": "/clicked_point",
-        "poseEstimateTopic": "/initialpose",
-        "poseEstimateXDeviation": 0.5,
-        "poseEstimateYDeviation": 0.5,
-        "poseEstimateThetaDeviation": 0.26179939
-      },
-      "imageMode": {}
     }
   },
   "globalVariables": {},
@@ -88,9 +23,5 @@
   "playbackConfig": {
     "speed": 1
   },
-  "layout": {
-    "direction": "row",
-    "first": "map!1gwi36m",
-    "second": "3D!18i6zy7"
-  }
+  "layout": "map!1gwi36m"
 }
