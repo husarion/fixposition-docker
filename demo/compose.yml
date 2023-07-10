@@ -8,7 +8,7 @@ services:
     command: ros2 launch fixposition_driver_ros2 tcp.launch 
   
   foxglove:
-    image: husarion/foxglove:humble-nightly
+    image: husarion/foxglove:humble
     volumes:
       - ./config/foxglove.json:/src/FoxgloveDefaultLayout.json
     environment:
@@ -18,7 +18,7 @@ services:
       - 8080:8080
 
   rosbridge:
-    image: husarion/rosbridge:humble-nightly
+    image: husarion/rosbridge-server:humble
     network_mode: host
     ipc: host
     ports:
