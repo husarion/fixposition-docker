@@ -1,14 +1,22 @@
 # Fixposition Vistion-RTK-2 demo
 
-Pulling Docker images:
+First, follow the [Quickstart guide](https://uploads-ssl.webflow.com/623c5f1910ae850ac3ba2058/6374941f2d8df215f2e88339_Quick%20Starter%20Guide%20%20EN.pdf) to set up the sensor (RTK is necessary for fusion mode).
 
+Connect to your device either using WiFi or Ethernet (when using an Ethernet connection it will be necessary to adjust the IP address configuration in the `tcp.yaml`, for example for Panther you should use `10.15.20.20`).
+
+Before starting containers make sure that sensor with fusion started properly (unless you want to use only GNSS data).
+You may need to start the fusion manually (in the configuration tab it can be changed to autostart).
+Fusion starts after GNSS localization with RTK information was received.
+Please connect to the sensor's page using the sensor's IP address - the default address when using WiFi is `10.0.1.1`, there you can monitor the current status.
+You should place your sensor outside and wait for it to find GNSS localization and RTK correction. Here is what your GNSS Status page should look like:
+![gnss_status](docs/gnss_status.png)
+Then you should also see the State estimate on the Fusion Status webpage:
+![fusion_status](docs/fusion_status.png)
+
+Finally, you can pull and execute containers: 
 ```bash
 docker compose pull
 ```
-
-Connect to your device either using WiFi or Ethernet (when using Ethernet connection it will be necessary to adjust IP address configuration in the `tcp.yaml`, for example for Panther you should use `10.15.20.20`).
-
-Execution: 
 
 ```bash
 docker compose up
