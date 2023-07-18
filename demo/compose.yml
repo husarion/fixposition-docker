@@ -7,6 +7,14 @@ services:
       - ./config/tcp.yaml:/ros2_ws/install/fixposition_driver_ros2/share/fixposition_driver_ros2/launch/tcp.yaml
     command: ros2 launch fixposition_driver_ros2 tcp.launch 
   
+  odometry_converter:
+    image: husarion/fixposition:humble
+    network_mode: host
+    ipc: host
+    volumes:
+      - ./config/odom_converter.yaml:/ros2_ws/install/fixposition_driver_ros2/share/fixposition_driver_ros2/launch/odom_converter.yaml
+    command: ros2 launch fixposition_odometry_converter_ros2 odom_converter.launch
+  
   foxglove:
     image: husarion/foxglove:humble
     volumes:
