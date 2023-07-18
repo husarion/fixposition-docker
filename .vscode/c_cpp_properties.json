@@ -10,6 +10,7 @@
         "/usr/include/**",
         "/opt/ros/humble/include/**",
         "/home/husarion/fixposition/ros2_ws/install/fixposition_driver_ros2/include/fixposition_driver_ros2/**",
+        "/home/husarion/fixposition/ros2_ws/install/fixposition_odometry_converter_ros2/include/**",
       ],
       "intelliSenseMode": "linux-gcc-x64",
       "compilerPath": "/usr/bin/c++",

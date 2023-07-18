@@ -24,6 +24,7 @@ include_directories(
 )
 
 add_library(odom_converter SHARED 
+  src/params.cpp
   src/odom_converter_node.cpp)
 ament_target_dependencies(odom_converter ${PACKAGE_INCLUDE_DEPENDS})
 rclcpp_components_register_nodes(odom_converter "fixposition::OdomConverterNode")
@@ -37,6 +38,10 @@ install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
 install(
   TARGETS odom_converter
   LIBRARY DESTINATION lib
+)
+
+install(DIRECTORY include
+  DESTINATION .
 )
 
 ament_package()
