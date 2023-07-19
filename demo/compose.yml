@@ -12,9 +12,9 @@ services:
     network_mode: host
     ipc: host
     volumes:
-      - ./config/odom_converter.yaml:/ros2_ws/install/fixposition_driver_ros2/share/fixposition_driver_ros2/launch/odom_converter.yaml
+      - ./config/odom_converter.yaml:/ros2_ws/install/fixposition_odometry_converter_ros2/share/fixposition_odometry_converter_ros2/launch/odom_converter.yaml
     command: ros2 launch fixposition_odometry_converter_ros2 odom_converter.launch
-  
+
   foxglove:
     image: husarion/foxglove:humble
     volumes:
@@ -31,4 +31,4 @@ services:
     ipc: host
     ports:
       - 9090:9090
-    command: ros2 launch rosbridge_server rosbridge_websocket_launch.xml  
+    command: ros2 launch rosbridge_server rosbridge_websocket_launch.xml
