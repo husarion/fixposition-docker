@@ -1,7 +1,18 @@
-// Port of the fixposition_odometry_converter 
-// (https://github.com/fixposition/fixposition_driver/tree/main/fixposition_odometry_converter) to ROS 2
-
-/* ROS */
+/**
+ *  @file
+ *  @brief Implementation of Parameter Loading for the odometry parameters
+ *
+ * \verbatim
+ *  ___    ___
+ *  \  \  /  /
+ *   \  \/  /   Fixposition AG
+ *   /  /\  \   All right reserved.
+ *  /__/  \__\
+ * 
+ * Port to ROS 2 by Husarion
+ * \endverbatim
+ *
+ */
 
 /* PACKAGE */
 #include <fixposition_odometry_converter_ros2/params.hpp>

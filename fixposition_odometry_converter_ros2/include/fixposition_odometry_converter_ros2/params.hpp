@@ -1,5 +1,18 @@
-// Port of the fixposition_odometry_converter 
-// (https://github.com/fixposition/fixposition_driver/tree/main/fixposition_odometry_converter) to ROS 2
+/**
+ *  @file
+ *  @brief Parameters for the odometry converter
+ *
+ * \verbatim
+ *  ___    ___
+ *  \  \  /  /
+ *   \  \/  /   Fixposition AG
+ *   /  /\  \   All right reserved.
+ *  /__/  \__\
+ * 
+ * Port to ROS 2 by Husarion
+ * \endverbatim
+ *
+ */
 
 #ifndef __ODOM_CONVERTER_PARAMS_HPP__
 #define __ODOM_CONVERTER_PARAMS_HPP__
@@ -7,10 +20,8 @@
 /* SYSTEM / STL */
 #include <string>
 
-/* EXTERNAL */
+/* ROS */
 #include <rclcpp/rclcpp.hpp>
-
-/* PACKAGE */
 
 namespace fixposition {
 
@@ -23,9 +34,10 @@ struct OdomInputParams {
     int multiplicative_factor;
     bool use_angular;
     /**
-     * @brief Load all parameters from ROS parameter server
+     * @brief Load all parameters from ROS 2
      *
-     * @param[in] ns namespace to load the parameters from
+     * @param[in] param_itf parameter interface
+     * @param[in] logging_itf logging interface
      * @return true success
      * @return false fail
      */

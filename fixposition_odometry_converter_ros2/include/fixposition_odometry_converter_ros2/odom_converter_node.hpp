@@ -1,10 +1,21 @@
-// Port of the fixposition_odometry_converter 
-// (https://github.com/fixposition/fixposition_driver/tree/main/fixposition_odometry_converter) to ROS 2
+/**
+ *  @file
+ *  @brief Declaration of OdomConverterNode class
+ *
+ * \verbatim
+ *  ___    ___
+ *  \  \  /  /
+ *   \  \/  /   Fixposition AG
+ *   /  /\  \   All right reserved.
+ *  /__/  \__\
+ * 
+ * Port to ROS 2 by Husarion
+ * \endverbatim
+ *
+ */
 
 #ifndef __ODOM_CONVERTER_HPP__
 #define __ODOM_CONVERTER_HPP__
-
-/* EXTERNAL */
 
 /* ROS */
 #include <geometry_msgs/msg/twist.hpp>
@@ -25,14 +36,14 @@ namespace fixposition {
 class OdomConverterNode : public rclcpp::Node {
    public:
     /**
-     * @brief Construct a new OdomConverter object
+     * @brief Construct a new OdomConverterNode object
      *
-     * @param[in] nh node handle
+     * @param[in] options node options
      */
     OdomConverterNode(const rclcpp::NodeOptions& options);
 
     /**
-     * @brief Destroy the OdomConverter object
+     * @brief Destroy the OdomConverterNode object
      *
      */
     ~OdomConverterNode() = default;
@@ -47,26 +58,28 @@ class OdomConverterNode : public rclcpp::Node {
      * @brief Converts and publishes the speed to an integer value in [mm/s]
      *
      * @param speed
+     * @param angular
+     * @param use_angular default false
      */
     void ConvertAndPublish(const double speed, const double angular, bool use_angular = false);
 
    private:
     /**
-     * @brief Converts a message of type TwistWithCovariance to the fixposition_driver Speed message
+     * @brief Converts a message of type TwistWithCovariance to the fixposition_driver Speed message and publishes it
      *
      * @param[in] msg
      */
     void TwistWithCovCallback(const geometry_msgs::msg::TwistWithCovariance::SharedPtr msg);
 
     /**
-     * @brief Converts a message of type Odometry to the fixposition_driver Speed message
+     * @brief Converts a message of type Odometry to the fixposition_driver Speed message and publishes it
      *
      * @param[in] msg
      */
     void OdometryCallback(const nav_msgs::msg::Odometry::SharedPtr msg);
 
     /**
-     * @brief Converts a message of type Twist to the fixposition_driver Speed message
+     * @brief Converts a message of type Twist to the fixposition_driver Speed message and publishes it
      *
      * @param[in] msg
      */
@@ -78,7 +91,7 @@ class OdomConverterNode : public rclcpp::Node {
     rclcpp::Subscription<geometry_msgs::msg::TwistWithCovariance>::SharedPtr twist_with_covariance_sub_;
     rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr twist_sub_;
 
-    rclcpp::Publisher<fixposition_driver_ros2::msg::Speed>::SharedPtr speed_pub_;
+    rclcpp::Publisher<fixposition_driver_ros2::msg::Speed>::SharedPtr ws_pub_;
 };
 }  // namespace fixposition
 #endif  //__FIXPOSITION_DRIVER_FIXPOSITION_DRIVER__

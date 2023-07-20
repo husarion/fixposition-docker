@@ -1,6 +1,20 @@
-// Port of the fixposition_odometry_converter 
-// (https://github.com/fixposition/fixposition_driver/tree/main/fixposition_odometry_converter) to ROS 2
+/**
+ *  @file
+ *  @brief Implementation of OdomConverterNode class
+ *
+ * \verbatim
+ *  ___    ___
+ *  \  \  /  /
+ *   \  \/  /   Fixposition AG
+ *   /  /\  \   All right reserved.
+ *  /__/  \__\
+ * 
+ * Port to ROS 2 by Husarion
+ * \endverbatim
+ *
+ */
 
+/* PACKAGE */
 #include <fixposition_odometry_converter_ros2/odom_converter_node.hpp>
 
 namespace fixposition {
@@ -16,7 +30,7 @@ OdomConverterNode::OdomConverterNode(const rclcpp::NodeOptions& options) : Node(
     Subscribe();
 
     // initialize the publisher
-    speed_pub_ = this->create_publisher<fixposition_driver_ros2::msg::Speed>(params_.fixposition_speed_topic, 10);
+    ws_pub_ = this->create_publisher<fixposition_driver_ros2::msg::Speed>(params_.fixposition_speed_topic, 10);
 }
 
 void OdomConverterNode::Subscribe() {
@@ -39,7 +53,7 @@ void OdomConverterNode::Subscribe() {
 }
 
 void OdomConverterNode::ConvertAndPublish(const double speed, const double angular, bool use_angular) {
-    if (speed_pub_->get_subscription_count() > 0) {
+    if (ws_pub_->get_subscription_count() > 0) {
         const int int_speed = round(speed * params_.multiplicative_factor);
         const int angular_speed = round(angular * params_.multiplicative_factor);
         fixposition_driver_ros2::msg::Speed msg;
@@ -47,7 +61,7 @@ void OdomConverterNode::ConvertAndPublish(const double speed, const double angul
         if (params_.use_angular) {
             msg.speeds.push_back(angular_speed);
         }
-        speed_pub_->publish(msg);
+        ws_pub_->publish(msg);
     }
 }
 

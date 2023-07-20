@@ -1,3 +1,4 @@
+# GENERAL ==============================================================================================================
 cmake_minimum_required(VERSION 3.10.2)
 project(fixposition_odometry_converter_ros2)
 set(CMAKE_CXX_STANDARD 14)
@@ -6,10 +7,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=always -Wall -Wextra
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# DEPENDENCIES =========================================================================================================
 set(PACKAGE_INCLUDE_DEPENDS
-  nav_msgs
   rclcpp
   rclcpp_components
+  nav_msgs
+  geometry_msgs
   fixposition_driver_ros2
 )
 
@@ -23,6 +26,7 @@ include_directories(
   include
 )
 
+# BUILD EXECUTABLE =====================================================================================================
 add_library(odom_converter SHARED 
   src/params.cpp
   src/odom_converter_node.cpp)
@@ -33,6 +37,7 @@ rclcpp_components_register_node(odom_converter
   EXECUTABLE odom_converter_node
 )
 
+# INSTALL ==============================================================================================================
 install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
 
 install(
