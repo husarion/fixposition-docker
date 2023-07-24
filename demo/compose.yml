@@ -1,6 +1,6 @@
 services:
   fixposition:
-    image: husarion/fixposition:humble-add-odom-converter
+    image: husarion/fixposition:humble
     network_mode: host
     ipc: host
     volumes:
@@ -8,7 +8,7 @@ services:
     command: ros2 launch fixposition_driver_ros2 tcp.launch 
   
   odometry_converter:
-    image: husarion/fixposition:humble-add-odom-converter
+    image: husarion/fixposition:humble
     network_mode: host
     ipc: host
     volumes:
