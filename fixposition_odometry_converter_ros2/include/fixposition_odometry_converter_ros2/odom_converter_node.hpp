@@ -8,7 +8,7 @@
  *   \  \/  /   Fixposition AG
  *   /  /\  \   All right reserved.
  *  /__/  \__\
- * 
+ *
  * Port to ROS 2 by Husarion
  * \endverbatim
  *
@@ -19,11 +19,7 @@
 
 /* ROS */
 #include <geometry_msgs/msg/twist.hpp>
-#include <geometry_msgs/msg/twist_stamped.hpp>
 #include <geometry_msgs/msg/twist_with_covariance.hpp>
-#include <geometry_msgs/msg/twist_with_covariance_stamped.hpp>
-#include <geometry_msgs/msg/vector3.hpp>
-#include <geometry_msgs/msg/vector3_stamped.hpp>
 #include <nav_msgs/msg/odometry.hpp>
 #include <rclcpp/rclcpp.hpp>
 
@@ -86,11 +82,7 @@ class OdomConverterNode : public rclcpp::Node {
     void TwistCallback(const geometry_msgs::msg::Twist::SharedPtr msg);
 
     OdomInputParams params_;
-
-    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
-    rclcpp::Subscription<geometry_msgs::msg::TwistWithCovariance>::SharedPtr twist_with_covariance_sub_;
-    rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr twist_sub_;
-
+    rclcpp::SubscriptionBase::SharedPtr ws_sub_;
     rclcpp::Publisher<fixposition_driver_ros2::msg::Speed>::SharedPtr ws_pub_;
 };
 }  // namespace fixposition

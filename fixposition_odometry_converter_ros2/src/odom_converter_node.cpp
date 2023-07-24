@@ -8,7 +8,7 @@
  *   \  \/  /   Fixposition AG
  *   /  /\  \   All right reserved.
  *  /__/  \__\
- * 
+ *
  * Port to ROS 2 by Husarion
  * \endverbatim
  *
@@ -36,17 +36,16 @@ OdomConverterNode::OdomConverterNode(const rclcpp::NodeOptions& options) : Node(
 void OdomConverterNode::Subscribe() {
     switch (params_.topic_type) {
         case VelTopicType::Twist:
-            twist_sub_ = this->create_subscription<geometry_msgs::msg::Twist>(
+            ws_sub_ = this->create_subscription<geometry_msgs::msg::Twist>(
                 params_.input_topic, 10, std::bind(&OdomConverterNode::TwistCallback, this, std::placeholders::_1));
-
             break;
         case VelTopicType::TwistWithCov:
-            twist_with_covariance_sub_ = this->create_subscription<geometry_msgs::msg::TwistWithCovariance>(
+            ws_sub_ = this->create_subscription<geometry_msgs::msg::TwistWithCovariance>(
                 params_.input_topic, 10,
                 std::bind(&OdomConverterNode::TwistWithCovCallback, this, std::placeholders::_1));
             break;
         case VelTopicType::Odometry:
-            odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(
+            ws_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(
                 params_.input_topic, 10, std::bind(&OdomConverterNode::OdometryCallback, this, std::placeholders::_1));
             break;
     }
