@@ -7,6 +7,8 @@ SHELL ["/bin/bash", "-c"]
 
 WORKDIR /ros2_ws
 
+COPY fixposition_odometry_converter_ros2 /ros2_ws/src/fixposition_odometry_converter_ros2
+
 # install everything needed
 RUN apt-get update && apt-get install -y \
         python3-pip \
@@ -28,7 +30,7 @@ RUN apt-get update && apt-get install -y \
     rm -rf /etc/ros/rosdep/sources.list.d/20-default.list && \
     rosdep init && \
     rosdep update --rosdistro $ROS_DISTRO && \
-    colcon build --packages-up-to fixposition_driver_ros2 && \
+    colcon build && \
     export SUDO_FORCE_REMOVE=yes && \
     apt-get remove -y \
         python3-colcon-common-extensions \
