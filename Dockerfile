@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y \
     git clone https://github.com/fixposition/fixposition_driver.git /ros2_ws/src/fixposition_driver && \
     git clone https://github.com/fixposition/fixposition_gnss_tf.git /ros2_ws/src/fixposition_gnss_tf && \
     rm -r src/fixposition_driver/fixposition_driver_ros1 && \
+    rm -r src/fixposition_driver/fixposition_odometry_converter && \
     rm -rf /etc/ros/rosdep/sources.list.d/20-default.list && \
     rosdep init && \
     rosdep update --rosdistro $ROS_DISTRO && \
