@@ -1,4 +1,4 @@
-# Fixposition Vistion-RTK-2 demo
+# Fixposition Vision-RTK 2 demo
 
 First, follow the [Quickstart guide](https://uploads-ssl.webflow.com/623c5f1910ae850ac3ba2058/6374941f2d8df215f2e88339_Quick%20Starter%20Guide%20%20EN.pdf) to set up the sensor (RTK is necessary for fusion mode).
 
