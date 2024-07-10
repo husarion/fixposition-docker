@@ -1,5 +1,0 @@
-topics:
-  -
-    topic: /panther/odometry/filtered  # Topic name on both ROS 1 and ROS 2
-    type: nav_msgs/msg/Odometry  # Type of topic to bridge
-    queue_size: 10  # Queue size

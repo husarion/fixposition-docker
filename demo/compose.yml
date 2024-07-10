@@ -15,19 +15,6 @@ services:
       - ./config/odom_converter.yaml:/ros2_ws/install/fixposition_odometry_converter_ros2/share/fixposition_odometry_converter_ros2/launch/odom_converter.yaml
     command: ros2 launch fixposition_odometry_converter_ros2 odom_converter.launch
 
-  bridge:
-    image: husarion/ros:galactic-ros1-bridge
-    network_mode: host
-    ipc: host
-    volumes:
-      - ./config/bridge_topics.yaml:/bridge_topics.yaml
-    environment:
-      - ROS_IP=10.15.20.149
-      - ROS_MASTER_URI=http://10.15.20.2:11311
-      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID:-0}
-      - RMW_IMPLEMENTATION=${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
-    command: bash -c "rosparam load /bridge_topics.yaml && ros2 run ros1_bridge parameter_bridge"
-
   foxglove:
     image: husarion/foxglove:humble
     volumes:
