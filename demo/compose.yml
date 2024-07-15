@@ -1,34 +1,38 @@
+x-common-config: &common-config
+  network_mode: host
+  ipc: host
+  environment:
+    - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
 services:
   fixposition:
     image: husarion/fixposition:humble
-    network_mode: host
-    ipc: host
+    container_name: fixposition
+    <<: *common-config
     volumes:
       - ./config/tcp.yaml:/ros2_ws/install/fixposition_driver_ros2/share/fixposition_driver_ros2/launch/tcp.yaml
     command: ros2 launch fixposition_driver_ros2 tcp.launch 
   
   odometry_converter:
     image: husarion/fixposition:humble
-    network_mode: host
-    ipc: host
+    container_name: odometry_converter
+    <<: *common-config
     volumes:
       - ./config/odom_converter.yaml:/ros2_ws/install/fixposition_odometry_converter_ros2/share/fixposition_odometry_converter_ros2/launch/odom_converter.yaml
     command: ros2 launch fixposition_odometry_converter_ros2 odom_converter.launch
 
   foxglove:
-    image: husarion/foxglove:humble
+    image: husarion/foxglove:1.84.0-20240119
+    container_name: foxglove
     volumes:
-      - ./config/foxglove.json:/src/FoxgloveDefaultLayout.json
-    environment:
-      - FOXGLOVE_PORT=8080
-      - ROSBRIDGE_PORT=9090
+      - ./config/foxglove.json:/foxglove/default-layout.json
     ports:
       - 8080:8080
 
-  rosbridge:
-    image: husarion/rosbridge-server:humble
-    network_mode: host
-    ipc: host
+  foxglove_bridge:
+    image: husarion/foxglove-bridge:humble-0.7.4-20240320
+    container_name: foxglove_bridge
+    <<: *common-config
     ports:
       - 9090:9090
-    command: ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+    command: ros2 launch foxglove_bridge foxglove_bridge_launch.xml port:=9090 capabilities:=[clientPublish,parameters,parametersSubscribe,services,connectionGraph,assets]
