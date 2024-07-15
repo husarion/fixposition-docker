@@ -26,7 +26,7 @@ docker compose up
 In your browser (Chrome/Chromium or related browsers are recommended) go to Foxglove:
 `localhost:8080`
 
-Now click the plus sign next to the `Data source` in the left top corner, select `Open connection` and set the `WebSocket URL` to `ws://localhost:9090`, finally click `Open`. The final result should look like this:
+Now, click `Open connection`, then, on the left select `Foxglove WebSocket` and set the `WebSocket URL` to `ws://localhost:9090`, finally click `Open`. The final result should look like this:
 ![foxglove_demo](docs/foxglove_demo.png)
 
 > To drive the Panther around you can use WebUI, Gamepad or teleop_twist_keyboard (for details please refer to the [manual](https://husarion.com/manuals/panther/#controlling-panther-robot)).
